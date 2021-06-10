@@ -33,11 +33,14 @@ def transforme (parquets, feature):
         i += 1
 
 def save_results(parquet, labels_, statut, filename):
-
+    li=120
     with open(filename, 'w') as fichier:
+        fichier.write(' ' * 8 + 'Cluster N* ' + str(statut) + '\n\n| id'+' '* 9 +'| qname'+' '* 36  +'| ttl'+' '* 6 +'| req_len'+' '* 1 +'| res_len'+' '* 2 +'| server'+' '* 25 +' '+' \n' + "-" * li + "+\n")
+
+    with open(filename, 'a') as fichier:
         for i in range(0, len(labels_)):
             if labels_[i] == statut:
-                fichier.write("| %10s | %10s | %5s | %5s| %5s | %20s \n" % (
+                fichier.write("| %10s | %40s | %8s | %8s| %8s | %30s \n" % (
                 parquet.iloc[i][0], parquet.iloc[i][1], parquet.iloc[i][2], parquet.iloc[i][3], parquet.iloc[i][4], parquet.iloc[i][5]))
 
 def create_dirs():
